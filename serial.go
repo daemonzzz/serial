@@ -21,11 +21,13 @@ func NewPort() (p * Port) {
 		},
 	}
 }
-func Open(device string, baud int) (p * Port, err error) {
+func Open(device string, baud int, parity int, stopbit int) (p * Port, err error) {
 	p = NewPort()
 	config := p.Config()
 	config.Device = device
 	config.BaudRate = baud
+	config.Parity = parity
+	config.StopBits = stopbit
 	err = p.Configure(config)
 	if err != nil {
 		return
